@@ -28,7 +28,7 @@ export default {};
 .nav-left ul {
   display: flex;
   align-content: center;
-  font-weight: 500;
+  font-weight: bold;
   font-size: 1rem;
 }
 
