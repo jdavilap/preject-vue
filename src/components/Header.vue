@@ -18,7 +18,7 @@ export default {};
 <style>
 .header {
   grid-area: header;
-  border-bottom: 1px solid #cccc;
+  border-bottom: 1px solid #ccc;
   display: flex;
   justify-content: space-between;
   /* align-content: center; */
@@ -44,8 +44,8 @@ export default {};
 .nav-left ul li:hover,
 .nav-left ul li:active,
 .active {
-  color: #438ee4;
-  border-bottom: 2px solid #438ee4;
+  color: #10c1d8;
+  border-bottom: 2px solid #10c1d8;
   font-weight: bold;
 }
 </style>

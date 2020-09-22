@@ -28,5 +28,7 @@ export default {
 <style>
 .stocks {
   padding: 30px;
+  display: flex;
+  flex-wrap: wrap;
 }
 </style>

@@ -10,7 +10,7 @@
           <input type="text" v-model="quantity" />
           <button
             @click.prevent="
-              buyAction({ key: stock.key, price: stock.price, quantity})
+              buyAction({ key: stock.key, price: stock.price, quantity })
             "
           >
             BUY
@@ -38,14 +38,14 @@ export default {
 
 <style>
 .panel {
-  border: 1px solid #ccc;
+  border: 1px solid #10c1d8;
   box-shadow: 1px 1px 5px #000;
   width: 400px;
   margin: 20px;
 }
 
 .panel-header {
-  background-color: #ccc;
+  background-color: #10c1d8;
   padding: 10px;
   display: flex;
   align-items: baseline;
@@ -67,4 +67,20 @@ export default {
   display: flex;
   justify-content: space-between;
 }
+
+button {
+  border: solid 2px #10c1d8;
+  font-family: inherit;
+  font-weight: bold;
+  border-radius: 3px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+button:hover {
+    background-color: #10c1d8;
+    color: #505050;
+}
+
+
 </style>
