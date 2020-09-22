@@ -1,6 +1,10 @@
 <template>
   <div class="stocks">
-    <app-stock v-for="stock in stocks" :key="stock['key']" :stock="stock"></app-stock>
+    <app-stock
+      v-for="stock in stocks"
+      :key="stock['key']"
+      :stock="stock"
+    ></app-stock>
   </div>
 </template>
 
@@ -15,5 +19,14 @@ export default {
   components: {
     appStock: Stock,
   },
+  created() {
+    this.$store.dispatch("INIT_STOCKS");
+  },
 };
 </script>
+
+<style>
+.stocks {
+  padding: 30px;
+}
+</style>

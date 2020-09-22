@@ -2,9 +2,9 @@
   <div class="header">
     <div class="nav-left">
       <ul>
-        <router-link to="/" tag="li">Home</router-link>
-        <router-link to="/stocks" tag="li">Stocks</router-link>
-        <router-link to="/portafolio" tag="li">Portafolio</router-link>
+        <router-link to="/" tag="li" active-class="active" exact>Home</router-link>
+        <router-link to="/stocks" tag="li" active-class="active">Stocks</router-link>
+        <router-link to="/portafolio" tag="li" active-class="active">Portafolio</router-link>
       </ul>
     </div>
     <div class="nav-rigth"></div>
@@ -18,10 +18,10 @@ export default {};
 <style>
 .header {
   grid-area: header;
-  background: #cccc;
+  border-bottom: 1px solid #cccc;
   display: flex;
   justify-content: space-between;
-  align-content: center;
+  /* align-content: center; */
 }
 
 .nav-left,
@@ -37,6 +37,15 @@ export default {};
 }
 .nav-left ul li {
   margin: 0 10px;
+  padding-bottom: 10px;
   cursor: pointer;
+}
+
+.nav-left ul li:hover,
+.nav-left ul li:active,
+.active {
+  color: #438ee4;
+  border-bottom: 2px solid #438ee4;
+  font-weight: bold;
 }
 </style>

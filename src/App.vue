@@ -15,10 +15,11 @@ export default {
 </script>
 
 <style>
-@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;300;400;600;700&display=swap");
 
 body {
   margin: 0;
+  font-family: "Source Sans Pro", sans-serif;
 }
 
 .app {
@@ -28,6 +29,5 @@ body {
   grid-template-areas:
     "header"
     "content";
-  font-family: "Ubuntu", sans-serif;
 }
 </style>
