@@ -1,6 +1,5 @@
 <template>
   <div class="portafolio">
-    <h1>portafolio component</h1>
     <app-stock></app-stock>
   </div>
 </template>

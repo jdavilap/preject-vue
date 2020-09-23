@@ -6,7 +6,7 @@
         <p>Price: ({{ stock.priceStock }})</p>
       </div>
       <div class="panel-body">
-        <h4>Tiene la cantidad de {{stock.quantity}}</h4>
+        <h4>Tiene la cantidad de {{ stock.quantityStock }}</h4>
       </div>
     </div>
   </div>
@@ -23,6 +23,11 @@ export default {
 </script>
 
 <style>
+.stock {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
 .panel {
   border: 1px solid #10c1d8;
   box-shadow: 1px 1px 5px #000;

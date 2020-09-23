@@ -5,30 +5,29 @@ const state = {
 
 const getters = {
   getStocksPortafolio() {
-    console.log(state.stocks);
     return state.stocks;
   },
 };
 
 const mutations = {
-  BUY_STOCK(state, { idStock, keyStock, priceStock, quantity }) {
-    const record = state.stocks.find((elm) => (elm.id = idStock));
+  'BUY_STOCK'(state, { idStock, keyStock, priceStock, quantityStock }) {
+    const record = state.stocks.find((elm) => (elm.idStock === idStock));
     if (record) {
-      record.quantity += quantity;
-      this.funds -= priceStock * quantity;
+      parseInt(record.quantityStock += quantityStock)
+      state.funds -= priceStock * quantityStock;
     } else {
       state.stocks.push({
         idStock,
         priceStock,
         keyStock,
-        quantity,
+        quantityStock,
       });
     }
   },
 };
 
 const actions = {
-  BUY_STOCK: ({ commit }, order) => {
+  'BUY_STOCK': ({ commit }, order) => {
     commit("BUY_STOCK", order);
   },
 };

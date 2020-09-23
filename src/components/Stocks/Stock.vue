@@ -7,7 +7,7 @@
       </div>
       <div class="panel-body">
         <form>
-          <input type="number" v-model="quantity" />
+          <input type="number" v-model.number="quantity" />
           <button @click.prevent="
               buyStock
             ">BUY</button>
@@ -31,7 +31,7 @@ export default {
         idStock: this.stock.id,
         keyStock: this.stock.key,
         priceStock: this.stock.price,
-        quantity: this.quantity,
+        quantityStock: this.quantity
       };
       this.$store.dispatch("BUY_STOCK", order);
       this.quantity = 0;
