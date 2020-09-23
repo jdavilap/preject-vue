@@ -2,17 +2,31 @@
   <div class="header">
     <div class="nav-left">
       <ul>
-        <router-link to="/" tag="li" active-class="active" exact>Home</router-link>
-        <router-link to="/stocks" tag="li" active-class="active">Stocks</router-link>
-        <router-link to="/portafolio" tag="li" active-class="active">Portafolio</router-link>
+        <router-link to="/" tag="li" active-class="active" exact
+          >Home</router-link
+        >
+        <router-link to="/stocks" tag="li" active-class="active"
+          >Stocks</router-link
+        >
+        <router-link to="/portafolio" tag="li" active-class="active"
+          >Portafolio</router-link
+        >
       </ul>
     </div>
-    <div class="nav-rigth"></div>
+    <div class="nav-rigth">
+      <p>Funds: {{getFunds}}</p>
+    </div>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  computed: {
+    getFunds() {
+      return this.$store.getters.getFunds;
+    },
+  },
+};
 </script>
 
 <style>

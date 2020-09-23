@@ -7,6 +7,21 @@
       </div>
       <div class="panel-body">
         <h4>Tiene la cantidad de {{ stock.quantityStock }}</h4>
+        <form>
+          <input type="number" v-model.number="quantity" />
+          <button
+            @click.prevent="
+              sellStock({
+                idStock: stock.idStock,
+                keyStock: stock.keyStock,
+                priceStock: stock.priceStock,
+                quantityStock: quantity,
+              })
+            "
+          >
+            Sell
+          </button>
+        </form>
       </div>
     </div>
   </div>
@@ -14,6 +29,16 @@
 
 <script>
 export default {
+  data() {
+    return {
+      quantity: 0,
+    };
+  },
+  methods: {
+    sellStock(order) {
+      this.$store.dispatch("SELL_STOCKS", order);
+    },
+  },
   computed: {
     stocks() {
       return this.$store.getters.getStocksPortafolio;
