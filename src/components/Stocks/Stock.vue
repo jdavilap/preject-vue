@@ -7,14 +7,10 @@
       </div>
       <div class="panel-body">
         <form>
-          <input type="text" v-model="quantity" />
-          <button
-            @click.prevent="
-              buyAction({ key: stock.key, price: stock.price, quantity })
-            "
-          >
-            BUY
-          </button>
+          <input type="number" v-model="quantity" />
+          <button @click.prevent="
+              buyStock
+            ">BUY</button>
         </form>
       </div>
     </div>
@@ -22,7 +18,6 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
 export default {
   props: ["stock"],
   data() {
@@ -31,7 +26,16 @@ export default {
     };
   },
   methods: {
-    ...mapActions({ buyAction: "SET_FUNDS" }),
+    buyStock() {
+      const order = {
+        idStock: this.stock.id,
+        keyStock: this.stock.key,
+        priceStock: this.stock.price,
+        quantity: this.quantity,
+      };
+      this.$store.dispatch("BUY_STOCK", order);
+      this.quantity = 0;
+    },
   },
 };
 </script>
@@ -78,9 +82,7 @@ button {
 }
 
 button:hover {
-    background-color: #10c1d8;
-    color: #505050;
+  background-color: #10c1d8;
+  color: #505050;
 }
-
-
 </style>
