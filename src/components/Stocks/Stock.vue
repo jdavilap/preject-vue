@@ -7,10 +7,11 @@
       </div>
       <div class="panel-body">
         <form>
-          <input type="number" v-model.number="quantity" />
-          <button @click.prevent="
-              buyStock
-            ">BUY</button>
+          <input type="number" v-model.number="quantity" :class="{danger: insufficientFunds}" />
+          <button
+            @click.prevent="buyStock"
+            :disabled="insufficientFunds || quantity <= 0 || !Number.isInteger(quantity)"
+          >{{ insufficientFunds ? 'Insufficient Funds' : 'Buy'}}</button>
         </form>
       </div>
     </div>
@@ -25,13 +26,21 @@ export default {
       quantity: 0,
     };
   },
+  computed: {
+    funds() {
+      return this.$store.getters.getFunds;
+    },
+    insufficientFunds() {
+      return this.quantity * this.stock.price > this.funds;
+    },
+  },
   methods: {
     buyStock() {
       const order = {
         idStock: this.stock.id,
         keyStock: this.stock.key,
         priceStock: this.stock.price,
-        quantityStock: this.quantity
+        quantityStock: this.quantity,
       };
       this.$store.dispatch("BUY_STOCK", order);
       this.quantity = 0;
@@ -41,6 +50,9 @@ export default {
 </script>
 
 <style>
+.danger {
+  border: 1px solid red;
+}
 .panel {
   border: 1px solid #10c1d8;
   box-shadow: 1px 1px 5px #000;
