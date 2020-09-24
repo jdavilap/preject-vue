@@ -3,18 +3,21 @@
     <div class="panel">
       <div class="panel-header">
         <h4>{{ stock.keyStock }}</h4>
-        <p>Price: ({{ stock.priceStock }}) | Quantity {{stock.quantityStock}}</p>
+        <p>
+          Price: ({{ stock.priceStock }}) | Quantity {{ stock.quantityStock }}
+        </p>
       </div>
       <div class="panel-body">
         <form>
-          <input type="number" v-model.number="quantity" />
-          <button
-            @click.prevent="
-              sellStock({
-                
-              })
-            "
-          >Sell</button>
+          <input
+            type="number"
+            v-model.number="quantity"
+            :class="{ danger: insufficientFunds }"
+          />
+          <p>{{ insufficientFunds ? 'Insifficient Funds' : null}}</p>
+          <button @click.prevent="sellStock({})" :disabled="insufficientFunds">
+            Sell
+          </button>
         </form>
       </div>
     </div>
@@ -47,11 +50,17 @@ export default {
     stocks() {
       return this.$store.getters.getStocksPortafolio;
     },
+    insufficientFunds() {
+      return this.quantity > this.stock.quantityStock;
+    },
   },
 };
 </script>
 
 <style>
+.danger {
+  border: 1px solid red;
+}
 .stock {
   display: flex;
   flex-wrap: wrap;
