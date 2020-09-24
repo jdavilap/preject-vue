@@ -1,26 +1,20 @@
 <template>
   <div class="stock">
-    <div class="panel" v-for="stock in stocks" :key="stock.id">
+    <div class="panel">
       <div class="panel-header">
         <h4>{{ stock.keyStock }}</h4>
-        <p>Price: ({{ stock.priceStock }})</p>
+        <p>Price: ({{ stock.priceStock }}) | Quantity {{stock.quantityStock}}</p>
       </div>
       <div class="panel-body">
-        <h4>Tiene la cantidad de {{ stock.quantityStock }}</h4>
         <form>
           <input type="number" v-model.number="quantity" />
           <button
             @click.prevent="
               sellStock({
-                idStock: stock.idStock,
-                keyStock: stock.keyStock,
-                priceStock: stock.priceStock,
-                quantityStock: quantity,
+                
               })
             "
-          >
-            Sell
-          </button>
+          >Sell</button>
         </form>
       </div>
     </div>
@@ -28,15 +22,25 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
 export default {
+  props: ["stock"],
   data() {
     return {
       quantity: 0,
     };
   },
   methods: {
-    sellStock(order) {
-      this.$store.dispatch("SELL_STOCKS", order);
+    ...mapActions(["SELL_STOCKS"]),
+    sellStock() {
+      const order = {
+        idStock: this.stock.idStock,
+        keyStock: this.stock.keyStock,
+        priceStock: this.stock.priceStock,
+        quantityStock: this.quantity,
+      };
+      this.SELL_STOCKS(order);
+      this.quantity = 0;
     },
   },
   computed: {

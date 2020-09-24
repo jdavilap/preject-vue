@@ -8,13 +8,13 @@ const getters = {
     return state.stocks;
   },
   getFunds() {
-    return state.funds
-  }
+    return state.funds;
+  },
 };
 
 const mutations = {
-  'BUY_STOCK'(state, { idStock, keyStock, priceStock, quantityStock }) {
-    const record = state.stocks.find((elm) => (elm.idStock === idStock));
+  BUY_STOCK(state, { idStock, keyStock, priceStock, quantityStock }) {
+    const record = state.stocks.find((elm) => elm.idStock === idStock);
     if (record) {
       record.quantityStock += quantityStock;
     } else {
@@ -27,11 +27,11 @@ const mutations = {
     }
     state.funds -= priceStock * quantityStock;
   },
-  'SELL_STOCKS'(state, { idStock, keyStock, priceStock, quantityStock }) {
-    const record = state.stocks.find((elm) => (elm.idStock === idStock));
+  SELL_STOCKS(state, { idStock, keyStock, priceStock, quantityStock }) {
+    const record = state.stocks.find((elm) => elm.idStock === idStock);
     if (record) {
       if (record.quantityStock - quantityStock > 0) {
-        record.quantityStock -= quantityStock
+        record.quantityStock -= quantityStock;
         state.funds += priceStock * quantityStock;
       } else {
         state.stocks.splice(state.stocks.indexOf(keyStock));
@@ -41,15 +41,14 @@ const mutations = {
       state.stocks.splice(state.stocks.indexOf(keyStock));
       state.funds += priceStock * quantityStock;
     }
-
-  }
+  },
 };
 
 const actions = {
-  'BUY_STOCK': ({ commit }, order) => {
+  BUY_STOCK: ({ commit }, order) => {
     commit("BUY_STOCK", order);
   },
-  'SELL_STOCKS': ({ commit }, order) => {
+  SELL_STOCKS: ({ commit }, order) => {
     commit("SELL_STOCKS", order);
   },
 };
